@@ -25,8 +25,52 @@
 
 </head>
 
-<body>
-  <h1>Github Issue Tracker Login Page</h1>
+<body class="min-h-screen max-w-md mx-auto">
+  
+  <section">
+    <div class="hero bg-base-200 min-h-screen max-w-[90%] mx-auto m-8 rounded-xl shadow-md">
+      <div class="hero-content flex-col  w-full">
+        <img class="w-20" src="./assets/github-logo.png">
+        
+        <div class="text-center space-y-2">
+          <h1 class="text-2xl font-bold">Github Issue Tracker</h1>
+          <p class="text-gray-500">
+            Sign in to manage your issues
+          </p>
+        </div>
+<!-- input field -->
+        <div class="card w-full max-w-sm shrink-0 mx-auto">
+            <fieldset class="fieldset">
+              <label class="label text-sm font-semibold  text-[#1F2937]">Username</label>
+              <input id="username" type="text" class="input w-full" placeholder="Enter Username" />
+
+              <p class="text-primary font-semibold mb-2">Default: <span >admin</span></p>
+
+              <label class="label font-semibold text-sm text-[#1F2937]">Password</label>
+              <input id="password" type="password" class="input w-full" placeholder="Enter Password" />
+
+              <p class="text-primary font-semibold">Default: <span >admin123</span></p>
+
+              <button onclick="signIn()" id="sign-in-btn" class="btn btn-primary mt-4">Sign In</button>
+            </fieldset>
+        </div>
+
+<!-- Or demo credential -->
+        <div class="divider text-[#1F2937]">
+          <span>OR</span>
+        </div>
+        
+        <div class="demo-credentials w-full text-center text-[#1F2937]">
+          <p class="mb-2">Demo Credentials:</p>
+          <div class="bg-gray-100 p-6 rounded-md">
+            <p><strong>Username:</strong> admin</p>
+            <p><strong>Password:</strong> admin123</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <script src="script/login.js"></script>
 </body>
