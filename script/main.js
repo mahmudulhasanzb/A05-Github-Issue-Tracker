@@ -225,7 +225,7 @@ document.getElementById('search-btn').addEventListener('click', function () {
 
 // logout button event
 logoutBtn.addEventListener('click', () => {
-  window.location.replace('login.html');
+  window.location.replace('index.html');
 });
 
 // load all issues on page load
