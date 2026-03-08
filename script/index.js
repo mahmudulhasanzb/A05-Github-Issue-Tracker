@@ -35,24 +35,22 @@ function createCard(issue) {
   // priority badge color
   let priorityBg = 'bg-red-200';
   let priorityText = 'text-red-500';
-  if (issue.priority === 'Medium') {
+  if (issue.priority === 'medium') {
     priorityBg = 'bg-yellow-200';
     priorityText = 'text-yellow-600';
-  } else if (issue.priority === 'Low') {
-    priorityBg = 'bg-green-200';
-    priorityText = 'text-green-600';
+  } else if (issue.priority === 'low') {
+    priorityBg = 'bg-gray-200';
+    priorityText = 'text-gray-600';
   }
 
   // labels html
   let labelsHtml = '';
   if (issue.labels && issue.labels.length > 0) {
     if (issue.labels[0]) {
-      labelsHtml += `<p class="p-1 px-4 rounded-xl bg-red-200 text-red-500 text-center font-semibold"><i
-                          class="fa-solid fa-bug"></i> ${issue.labels[0]}</p>`;
+      labelsHtml += `<p class="p-1 px-4 rounded-xl bg-red-200 text-red-500 text-center font-semibold"><i class="fa-solid fa-bug"></i> ${issue.labels[0]}</p>`;
     }
     if (issue.labels[1]) {
-      labelsHtml += `<p class="p-1 px-4 rounded-xl bg-yellow-200 text-yellow-600 text-center font-semibold"><i
-                          class="fa-regular fa-life-ring"></i> ${issue.labels[1]}</p>`;
+      labelsHtml += `<p class="p-1 px-4 rounded-xl bg-yellow-200 text-yellow-600 text-center font-semibold"><i class="fa-regular fa-life-ring"></i> ${issue.labels[1]}</p>`;
     }
   }
 
@@ -129,48 +127,55 @@ async function loadIssuesByStatus(status) {
 
 // load single issue and show modal
 async function loadSingleIssue(id) {
-  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
-  const dataVar = await res.json();
-  const issue = dataVar.data;
+  try {
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const dataVar = await res.json();
+    const issue = dataVar.data;
 
-  // set modal content
-  document.getElementById('modal-title').innerText = issue.title;
-  document.getElementById('modal-author').innerText = issue.author;
-  document.getElementById('modal-date').innerText = issue.createdAt;
-  document.getElementById('modal-description').innerText = issue.description;
-  document.getElementById('modal-assignee').innerText = issue.assignee || 'Unassigned';
+    // set modal content
+    document.getElementById('modal-title').innerText = issue.title;
+    document.getElementById('modal-author').innerText = issue.author;
+    document.getElementById('modal-date').innerText = issue.createdAt;
+    document.getElementById('modal-description').innerText = issue.description;
+    document.getElementById('modal-assignee').innerText = issue.assignee || 'Unassigned';
 
-  // status badge
-  const modalStatus = document.getElementById('modal-status');
-  modalStatus.innerText = issue.status;
-  if (issue.status === 'open') {
-    modalStatus.className = 'px-3 py-1 rounded-full text-xs font-semibold capitalize bg-green-100 text-green-700';
-  } else {
-    modalStatus.className = 'px-3 py-1 rounded-full text-xs font-semibold capitalize bg-purple-100 text-purple-700';
+    // status badge
+    const modalStatus = document.getElementById('modal-status');
+    modalStatus.innerText = issue.status;
+    if (issue.status === 'open') {
+      modalStatus.className = 'px-3 py-1 rounded-full text-xs font-semibold capitalize bg-green-600 text-white';
+    } else {
+      modalStatus.className = 'px-3 py-1 rounded-full text-xs font-semibold capitalize bg-purple-100 text-purple-700';
+    }
+
+    // priority badge
+    const modalPriority = document.getElementById('modal-priority');
+    modalPriority.innerText = issue.priority;
+    if (issue.priority === 'high') {
+      modalPriority.className = 'inline-block px-2 py-0.5 rounded-full text-[11px] font-bold uppercase bg-red-600 text-white';
+    } else if (issue.priority === 'medium') {
+      modalPriority.className = 'inline-block px-2 py-0.5 rounded-full text-[11px] font-bold uppercase bg-yellow-200 text-yellow-600';
+    } else {
+      modalPriority.className = 'inline-block px-2 py-0.5 rounded-full text-[11px] font-bold uppercase bg-green-200 text-green-600';
+    }
+
+    // labels - same style as cards
+    const modalLabels = document.getElementById('modal-labels');
+    modalLabels.innerHTML = '';
+    if (issue.labels && issue.labels.length > 0) {
+      if (issue.labels[0]) {
+        modalLabels.innerHTML += `<p class="p-1 px-4 rounded-xl bg-red-200 text-red-500 text-center font-semibold"><i class="fa-solid fa-bug"></i> ${issue.labels[0]}</p>`;
+      }
+      if (issue.labels[1]) {
+        modalLabels.innerHTML += `<p class="p-1 px-4 rounded-xl bg-yellow-200 text-yellow-600 text-center font-semibold"><i class="fa-regular fa-life-ring"></i> ${issue.labels[1]}</p>`;
+      }
+    }
+
+    // show modal
+    document.getElementById('my_modal_1').showModal();
+  } catch (error) {
+    console.log('Error loading issue:', error);
   }
-
-  // priority badge
-  const modalPriority = document.getElementById('modal-priority');
-  modalPriority.innerText = issue.priority;
-  if (issue.priority === 'High') {
-    modalPriority.className = 'inline-block px-2 py-0.5 rounded-full text-[11px] font-bold uppercase bg-red-200 text-red-600';
-  } else if (issue.priority === 'Medium') {
-    modalPriority.className = 'inline-block px-2 py-0.5 rounded-full text-[11px] font-bold uppercase bg-yellow-200 text-yellow-600';
-  } else {
-    modalPriority.className = 'inline-block px-2 py-0.5 rounded-full text-[11px] font-bold uppercase bg-green-200 text-green-600';
-  }
-
-  // labels
-  const modalLabels = document.getElementById('modal-labels');
-  modalLabels.innerHTML = '';
-  if (issue.labels && issue.labels.length > 0) {
-    issue.labels.forEach(label => {
-      modalLabels.innerHTML += `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700">${label}</span>`;
-    });
-  }
-
-  // show modal
-  document.getElementById('my_modal_1').showModal();
 }
 
 // search issues function
@@ -206,12 +211,17 @@ allButtons.forEach(btn => {
   });
 });
 
-// search input event
-searchInput.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    searchIssues(searchInput.value.trim());
-  }
-});
+// search input event - 1
+// searchInput.addEventListener('keyup', (e) => {
+//   // if (e.key === 'Enter') {
+//     searchIssues(searchInput.value.trim());
+//   // }
+// });
+
+// search input event - 2
+document.getElementById('search-btn').addEventListener('click', function () {
+  searchIssues(searchInput.value.trim())
+})
 
 // logout button event
 logoutBtn.addEventListener('click', () => {
