@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <!-- font integration  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet" />
-    
+
     <!-- tailwind+daisyui  -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -27,7 +27,8 @@
 
 <body>
     <!-- nabvar -->
-    <header class="bg-white min-h-[72px] px-6 py-4 flex flex-col md:flex-row items-start md:items-center justify-between border-b-2 border-indigo-100 gap-3 md:gap-0">
+    <header
+        class="bg-white min-h-[72px] px-6 py-4 flex flex-col md:flex-row items-start md:items-center justify-between border-b-2 border-indigo-100 gap-3 md:gap-0">
 
         <div class="flex items-center gap-3">
             <img src="./assets/github-logo.png" alt="GitHub Logo" class="w-8 h-8">
@@ -35,42 +36,45 @@
         </div>
 
         <div class="flex items-center gap-4 w-full md:w-auto flex-wrap sm:flex-nowrap">
-            <div class="flex items-center bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 w-full md:w-72 gap-2">
+            <div
+                class="flex items-center bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 w-full md:w-72 gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="shrink-0">
+                    class="shrink-0">
                     <path
                         d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z"
                         stroke="#8892B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M14 14L11.1 11.1" stroke="#8892B0" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
+                        stroke-linejoin="round" />
                 </svg>
                 <input type="text" id="search-input" placeholder="Search issues..."
-                class="bg-transparent border-none outline-none text-sm w-full text-slate-900">
+                    class="bg-transparent border-none outline-none text-sm w-full text-slate-900">
             </div>
             <button id="new-issue-btn" class="btn min-h-0 h-9 px-4 text-white border-none font-medium text-sm"
-            style="background-color: #4f2ee8;">+ New Issue</button>
+                style="background-color: #4f2ee8;">+ New Issue</button>
             <button id="logout-btn"
-                 class="btn min-h-0 h-9 px-4 btn-outline border-slate-200 text-slate-900 hover:bg-slate-200 hover:border-slate-300 font-medium text-sm bg-transparent">Sign Out</button>
+                class="btn min-h-0 h-9 px-4 btn-outline border-slate-200 text-slate-900 hover:bg-slate-200 hover:border-slate-300 font-medium text-sm bg-transparent">Sign
+                Out</button>
         </div>
 
     </header>
 
     <!-- main section -->
-     <main class="w-full max-w-[1200px] mx-auto my-8 px-6 flex-1">
+    <main class="w-full max-w-[1200px] mx-auto my-8 px-6 flex-1">
         <!-- buttons -->
         <div class="bg-white p-4 rounded-lg shadow-sm  mb-6">
             <div class="flex flex-col sm:flex-row gap-3 tabs-container">
                 <button
                     class="tab-btn active btn min-h-0 h-9 bg-[#4f2ee8] text-white hover:bg-[#3a1eb8] px-8 font-normal text-sm w-full sm:w-auto"
                     data-filter="all">All</button>
-                <button
-                    class="tab-btn btn min-h-0 h-9 bg-white text-slate-500 px-8 text-sm w-full sm:w-auto"
+                <button class="tab-btn btn min-h-0 h-9 bg-white text-slate-500 px-8 text-sm w-full sm:w-auto"
                     data-filter="open">Open</button>
-                <button class="tab-btn btn min-h-0 h-9 bg-white text-slate-500 px-8 text-sm w-full sm:w-auto">Closed</button>
+                <button
+                    class="tab-btn btn min-h-0 h-9 bg-white text-slate-500 px-8 text-sm w-full sm:w-auto">Closed</button>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-sm  mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div
+            class="bg-white p-6 rounded-lg shadow-sm  mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
 
             <!--  -->
             <div class="flex items-center gap-4">
@@ -81,19 +85,70 @@
                     <h3 class="text-lg font-semibold text-slate-900"><span id="issue-count">0</span> Issues</h3>
                     <p class="text-sm text-slate-500">Track and manage your project issues</p>
                 </div>
-            </div> 
+            </div>
 
             <!-- indecators -->
             <div class="flex gap-4">
-                <div class="flex items-center gap-2 text-sm font-medium"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span> Open</div>
-                <div class="flex items-center gap-2 text-sm font-medium"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> Closed</div>
+                <div class="flex items-center gap-2 text-sm font-medium"><span
+                        class="w-2.5 h-2.5 rounded-full bg-green-500"></span> Open</div>
+                <div class="flex items-center gap-2 text-sm font-medium"><span
+                        class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> Closed</div>
             </div>
 
         </div>
 
-     </main>
+        <!-- card and modal  -->
+        <section>
+            <div id="issues-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <!-- Cards will be populated dynamically -->
+
+                <div
+                    class="card bg-base-100 w-70 shadow-sm rounded-lg border-t-4 border-green-500 flex flex-col transition-all hover:-translate-y-0.5 hover:shadow-md issue-card">
+                    <div class="card-body">
+                        <div class="flex justify-between">
+                            <div>
+                                <img src="./assets/Open-Status.png" alt="">
+                            </div>
+                            <div>
+                                <p class="p-1 px-5 rounded-xl bg-red-200 text-red-500 font-semibold">High</p>
+                            </div>
+                        </div>
+
+                        <h2
+                            class="text-base font-semibold mb-2 cursor-pointer text-slate-900 transition-colors hover:text-[#4f2ee8] hover:underline card-title">
+                            Fix Navigation menu on mobile</h2>
+                        <p class="text-[13px] text-slate-500">A card component has a figure, a body part, and inside
+                            body there are title and actions parts</p>
+
+                        <div class="flex justify-between gap-2">
+                            <p class="p-1 px-4 rounded-xl bg-red-200 text-red-500 text-center font-semibold"><i
+                                    class="fa-solid fa-bug"></i> Bug</p>
+                            <p class="p-1 px-4 rounded-xl bg-yellow-200 text-yellow-600 text-center font-semibold"><i
+                                    class="fa-regular fa-life-ring"></i> Help Wanted</p>
+                        </div>
+
+                    </div>
+
+                    <div class="divider mt-0 mb-0"></div>
+
+                    <div class="card-body py-2">
+                        <p class="text-[12px] text-slate-400">#dfl;jsd</p>
+                        <p class="text-[12px] text-slate-400">12/34/5
+                        <p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
     <!-- ms end -->
 
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
