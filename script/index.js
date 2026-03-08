@@ -18,6 +18,6 @@ const signIn = () => {
     return;
   }
   if (username === "admin" && password === "admin123") {
-    window.location.replace("index.html");
+    window.location.replace("main.html");
   }
 }
