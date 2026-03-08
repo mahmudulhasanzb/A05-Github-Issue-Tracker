@@ -62,14 +62,15 @@
     <main class="w-full max-w-[1200px] mx-auto my-8 px-6 flex-1">
         <!-- buttons -->
         <div class="bg-white p-4 rounded-lg shadow-sm  mb-6">
-            <div class="flex flex-col sm:flex-row gap-3 tabs-container">
+            <div id="filterBtnContainer" class="flex flex-col sm:flex-row gap-3 tabs-container">
                 <button
                     class="tab-btn active btn min-h-0 h-9 bg-[#4f2ee8] text-white hover:bg-[#3a1eb8] px-8 font-normal text-sm w-full sm:w-auto"
                     data-filter="all">All</button>
                 <button class="tab-btn btn min-h-0 h-9 bg-white text-slate-500 px-8 text-sm w-full sm:w-auto"
                     data-filter="open">Open</button>
                 <button
-                    class="tab-btn btn min-h-0 h-9 bg-white text-slate-500 px-8 text-sm w-full sm:w-auto">Closed</button>
+                    class="tab-btn btn min-h-0 h-9 bg-white text-slate-500 px-8 text-sm w-full sm:w-auto"
+                    data-filter="closed">Closed</button>
             </div>
         </div>
 
@@ -97,12 +98,14 @@
 
         </div>
 
-        <!-- card and modal  -->
+        <!-- card and modal section -->
         <section>
+            <!-- card-container -->
             <div id="issues-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 <!-- Cards will be populated dynamically -->
 
-                <div
+                <!-- card -->
+                <!-- <div
                     class="card bg-base-100 w-70 shadow-sm rounded-lg border-t-4 border-green-500 flex flex-col transition-all hover:-translate-y-0.5 hover:shadow-md issue-card">
                     <div class="card-body">
                         <div class="flex justify-between">
@@ -137,10 +140,13 @@
                         <p>
                     </div>
 
-                </div>
-
+                </div> -->
             </div>
 
+            <!-- loading spinner -->
+             <div id="loadingSpinner" class="h-[60vh] flex justify-center items-center hidden">
+                 <span class="loading loading-spinner text-primary"></span>
+             </div>
 
             <!-- Test Modal -->
             <!-- Open the modal using ID.showModal() method -->
