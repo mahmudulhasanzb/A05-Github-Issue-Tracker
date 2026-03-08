@@ -33,7 +33,7 @@ Password: admin123
 
 - **GitHub Repository Link:** https://github.com/mahmudulhasanzb/A05-Github-Issue-Tracker.git
 - **Live Site Link (Github):** https://mahmudulhasanzb.github.io/A05-Github-Issue-Tracker/
-- **Live Site Link (Netlify):**
+- **Live Site Link (Netlify):** https://a05-github-issue-tracker.netlify.app/
 ---
 
 
